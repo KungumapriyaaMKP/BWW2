@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Royal Wedding Invitation | Sivani &amp; Abhishek</title>
+  
+  <meta name="description" content="With joy and gratitude, we invite you to celebrate the sacred wedding union of Sivani Ahilan Annalakshmi and Abhishek Krishna SS on December 14, 2026 in Trichy.">
+  <meta name="theme-color" content="#1a0207">
+
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Royal Wedding Invitation | Sivani &amp; Abhishek">
+  <meta property="og:description" content="Requesting your honourable presence to bless the wedding union of Sivani &amp; Abhishek on December 14, 2026.">
+  <meta property="og:image" content="assets/images/card_cover.jpg">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <!-- Google Fonts: Editorial Serif, Luxury Display & Tamil -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Montserrat:wght@400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" href="frames/desktop/frame_0001.webp" as="image">
+  <link rel="preload" href="assets/images/temple_gate_poster.jpg" as="image">
+  <link rel="preload" href="assets/audio/wedding_music.mp3" as="audio">
+</head>
+<body>
+
+  <!-- =========================================================
+       0. CINEMATIC TEMPLE ENTRANCE GATE OPENING EXPERIENCE
+       ========================================================= -->
+  <aside id="temple-gate-overlay" class="temple-gate-overlay" aria-label="Temple Gate Entrance Portal">
+    <video id="gate-video" class="gate-video" src="Temple_entrance_animation_design_cd75e40c_t0-6_1080p.mp4" poster="assets/images/temple_gate_poster.jpg" preload="auto" playsinline webkit-playsinline></video>
+
+    <button id="gate-skip-btn" class="gate-skip-btn" type="button" aria-label="Skip to Wedding Invitation">
+      <span>Skip to Invitation</span>
+      <svg class="skip-icon-svg" viewBox="0 0 24 24">
+        <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </button>
+
+    <div id="gate-light-bloom" class="gate-light-bloom"></div>
+  </aside>
+
+  <!-- Ambient Traditional Wedding Audio Track -->
+  <audio id="bg-music" src="assets/audio/wedding_music.mp3" preload="auto" loop></audio>
+
+  <!-- Floating Unobtrusive Ambient Audio Controller -->
+  <button id="music-toggle-btn" class="floating-music-btn music-paused" aria-label="Toggle background music" title="Toggle Music">
+    <div class="sound-bars">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </button>
+
+  <!-- Persistent Luxury Pichwai Lotus Side Borders -->
+  <aside class="side-lotus-borders" aria-hidden="true">
+    <div class="site-border-pillar left"></div>
+    <div class="site-border-pillar right"></div>
+  </aside>
+
+  <!-- Ambient Sacred Temple Stardust Particle Engine -->
+  <canvas id="stardust-canvas" class="stardust-canvas" aria-hidden="true"></canvas>
+
+  <main>
+    <!-- =========================================================
+         2. FULL SCREEN CINEMATIC TEMPLE GOPURAM SCROLL HERO
+         ========================================================= -->
+    <section id="video-scrub-section" class="video-scrub-section" aria-label="Cinematic Temple Gopuram Scroll Experience">
+      <div class="video-scrub-pin">
+        <canvas id="canvas-scrubber"></canvas>
+        
+        <!-- Elegant Vignette & Atmospheric Gradients -->
+        <div class="video-overlay-vignette"></div>
+
+        <!-- Dynamic Story Captions timed to drone flight depth -->
+        <div class="video-caption-container">
+          <!-- Opening Hero Tag -->
+          <div class="video-caption active" data-range="0.00-0.25">
+            <div class="video-caption-label">In The Realm of Divine Grace</div>
+            <h1 class="video-caption-title gold-text">Sivani &amp; Abhishek</h1>
+            <p class="video-caption-desc">Two souls embarking upon a sacred lifetime union</p>
+          </div>
+
+          <!-- Sanctum Courtyard Message -->
+          <div class="video-caption" data-range="0.45-0.98">
+            <div class="video-caption-label">Together With Their Families</div>
+            <h2 class="video-caption-title gold-text">A Sacred Journey Begins</h2>
+            <p class="video-caption-desc">Requesting your honourable presence to bless the wedding union</p>
+          </div>
+        </div>
+
+        <!-- Floating Scroll Prompt -->
+        <div id="scroll-indicator" class="scroll-indicator-pill">
+          <div class="scroll-mouse-icon">
+            <div class="scroll-wheel-dot"></div>
+          </div>
+          <span class="scroll-text">Scroll to Enter</span>
+        </div>
+
+        <!-- Preload & Scrubbing Progress Bar -->
+        <div id="video-load-progress" class="video-load-progress"></div>
+      </div>
+    </section>
+
+    <!-- Golden Light Portal Divider between Video and Card -->
+    <div class="scroll-portal-transition"></div>
+
+    <!-- =========================================================
+         3. BESPOKE DIGITAL WEDDING CARD (FROM PHYSICAL INVITE)
+         ========================================================= -->
+    <section id="wedding-card" class="wedding-card-section" aria-label="Physical Wedding Invitation Digital Rendition">
+      <div class="wedding-invitation-container">
+        <div class="royal-physical-card reveal-item tilt-card">
+          <!-- Gold Monogram Crest from Physical Card -->
+          <img src="assets/images/monogram_crest_transparent.png" alt="S &amp; A Royal Monogram" class="card-monogram-crest">
+
+          <div class="card-invocation">Together With Their Families</div>
+
+          <!-- Bride Presentation -->
+          <div class="bride-groom-block">
+            <h2 class="person-name gold-text">Sivani Ahilan Annalakshmi</h2>
+            <div class="parentage-line">
+              Daughter of <span class="parent-names">Ahilan Shanmugam &amp; Annalakshmi Ahilan</span>
+            </div>
+          </div>
+
+          <div class="coupler-symbol">&amp;</div>
+
+          <!-- Groom Presentation -->
+          <div class="bride-groom-block">
+            <h2 class="person-name gold-text">Abhishek Krishna SS</h2>
+            <div class="parentage-line">
+              Son of <span class="parent-names">Santosh Kumar &amp; Supriya Santosh Kumar</span>
+            </div>
+          </div>
+
+          <div class="solicitation-text">
+            Request your honourable presence to bless their union on
+          </div>
+
+          <!-- Ornate Date Highlight Box with Gold Flourish -->
+          <div class="date-highlight-ornate">
+            <svg class="date-flourish-svg" viewBox="0 0 340 30">
+              <path d="M170 15 C130 5, 90 25, 30 15 M170 15 C210 5, 250 25, 310 15" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <circle cx="170" cy="15" r="4"/>
+              <circle cx="90" cy="15" r="2.5"/>
+              <circle cx="250" cy="15" r="2.5"/>
+            </svg>
+            <div class="date-text-primary gold-text">
+              <span class="month">DEC</span>
+              <span class="day">14</span>
+              <span class="year">2026</span>
+            </div>
+            <svg class="date-flourish-svg" viewBox="0 0 340 30" style="transform: rotate(180deg);">
+              <path d="M170 15 C130 5, 90 25, 30 15 M170 15 C210 5, 250 25, 310 15" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <circle cx="170" cy="15" r="4"/>
+              <circle cx="90" cy="15" r="2.5"/>
+              <circle cx="250" cy="15" r="2.5"/>
+            </svg>
+          </div>
+
+          <div class="muhurtham-time">9:15 AM to 10:15 AM</div>
+
+          <!-- Venue Summary -->
+          <div class="venue-card-block">
+            <div class="venue-tag">Venue</div>
+            <div class="venue-name-main">The Royal Mahal</div>
+            <div class="venue-address-line">Vayalur Murugan Temple Road, Trichy</div>
+          </div>
+
+          <!-- Ornate 3-Ceremony Summary Strip inside Card -->
+          <div class="card-ceremonies-strip">
+            <a href="#itinerary" class="card-ceremony-chip">
+              <span class="chip-type">Engagement</span>
+              <span class="chip-date">Dec 13 &bull; 7:00 PM</span>
+            </a>
+            <a href="#itinerary" class="card-ceremony-chip chip-highlight">
+              <span class="chip-type">Wedding</span>
+              <span class="chip-date">Dec 14 &bull; 9:15 AM</span>
+            </a>
+            <a href="#itinerary" class="card-ceremony-chip">
+              <span class="chip-type">Reception</span>
+              <span class="chip-date">Dec 17 &bull; 6:30 PM</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4. AUSPICIOUS MUHURTHAM LIVE COUNTDOWN & CELEBRATION POPPER
+         ========================================================= -->
+    <section id="countdown-section" class="countdown-section" aria-label="Muhurtham Countdown">
+      <!-- High-Performance Celebration Confetti & Popper Canvas -->
+      <canvas id="popper-canvas" class="popper-canvas"></canvas>
+
+      <div class="section-label">Auspicious Muhurtham</div>
+      <h2 class="section-title gold-text">Counting Down to the Sacred Union</h2>
+
+      <div class="section-divider-motif">
+        <div class="motif-line"></div>
+        <img src="assets/images/single_lotus_transparent.png" alt="Lotus" class="motif-lotus-icon">
+        <div class="motif-line right"></div>
+      </div>
+
+      <div id="countdown-grid" class="countdown-grid" title="Tap to celebrate with festive gold confetti">
+        <div class="countdown-item">
+          <div id="count-days" class="countdown-number">00</div>
+          <div class="countdown-unit">Days</div>
+        </div>
+        <div class="countdown-item">
+          <div id="count-hours" class="countdown-number">00</div>
+          <div class="countdown-unit">Hours</div>
+        </div>
+        <div class="countdown-item">
+          <div id="count-minutes" class="countdown-number">00</div>
+          <div class="countdown-unit">Minutes</div>
+        </div>
+        <div class="countdown-item">
+          <div id="count-seconds" class="countdown-number">00</div>
+          <div class="countdown-unit">Seconds</div>
+        </div>
+      </div>
+
+      <div class="panchangam-details">
+        <strong>Vrischika Lagnam</strong> &bull; 
+        <strong>Thiruvonam Nakshatram</strong> &bull; 
+        <strong>Panchami Thithi</strong> &bull; 
+        <strong>Amrita Yogam</strong>
+      </div>
+
+      <div style="margin-top: 1.75rem;">
+        <button id="popper-btn" class="popper-celebrate-btn" type="button" title="Celebrate with gold confetti burst">
+          <svg class="btn-icon-svg" viewBox="0 0 24 24">
+            <path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6.4-4.8-6.4 4.8 2.4-7.2-6-4.8h7.6z"/>
+          </svg>
+          <span>Celebrate With Gold Confetti</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. SACRED CEREMONIES ITINERARY
+         ========================================================= -->
+    <section id="itinerary" class="itinerary-section" aria-label="Event Itinerary">
+      <div class="itinerary-container">
+        <div style="text-align: center;">
+          <div class="section-label">Celebration Itinerary</div>
+          <h2 class="section-title gold-text">Sacred Ceremonies</h2>
+          <div class="section-divider-motif">
+            <div class="motif-line"></div>
+            <img src="assets/images/single_lotus_transparent.png" alt="Lotus" class="motif-lotus-icon">
+            <div class="motif-line right"></div>
+          </div>
+        </div>
+
+        <div class="itinerary-cards-grid">
+          <!-- Ceremony 1: Engagement -->
+          <div class="itinerary-card reveal-item tilt-card stagger-1">
+            <div class="event-card-inner">
+              <div class="event-illustration-frame">
+                <img src="assets/images/event_engagement_couple.png" alt="Engagement Ceremony Couple" class="event-couple-img">
+              </div>
+              <img src="assets/images/gold_flourish.png" alt="Gold Flourish" class="event-flourish">
+              <div class="event-type-badge">Engagement</div>
+              <div class="event-date-highlight">DEC 13, 2026</div>
+              <div class="event-time-highlight">7:00 PM Onwards</div>
+              <div class="event-venue-block">
+                <div class="event-venue-title">The Royal Mahal</div>
+                <div class="event-venue-sub">Vayalur Road, Trichy</div>
+              </div>
+            </div>
+            <a href="#" class="calendar-action-btn" data-cal-event="engagement">
+              <svg class="btn-icon-svg" viewBox="0 0 24 24">
+                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/>
+              </svg>
+              <span>Add to Calendar</span>
+            </a>
+          </div>
+
+          <!-- Ceremony 2: Wedding -->
+          <div class="itinerary-card reveal-item tilt-card stagger-2">
+            <div class="event-card-inner">
+              <div class="event-illustration-frame">
+                <img src="assets/images/event_wedding_couple.png" alt="Wedding Muhurtham Ceremony Couple" class="event-couple-img">
+              </div>
+              <img src="assets/images/gold_flourish.png" alt="Gold Flourish" class="event-flourish">
+              <div class="event-type-badge">Wedding</div>
+              <div class="event-date-highlight">DEC 14, 2026</div>
+              <div class="event-time-highlight">9:15 AM to 10:15 AM</div>
+              <div class="event-venue-block">
+                <div class="event-venue-title">The Royal Mahal</div>
+                <div class="event-venue-sub">Vayalur Murugan Temple Road, Trichy</div>
+              </div>
+            </div>
+            <a href="#" class="calendar-action-btn" data-cal-event="wedding">
+              <svg class="btn-icon-svg" viewBox="0 0 24 24">
+                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/>
+              </svg>
+              <span>Add to Calendar</span>
+            </a>
+          </div>
+
+          <!-- Ceremony 3: Reception -->
+          <div class="itinerary-card reveal-item tilt-card stagger-3">
+            <div class="event-card-inner">
+              <div class="event-illustration-frame">
+                <img src="assets/images/event_reception_couple.png" alt="Royal Reception Ceremony Couple" class="event-couple-img">
+              </div>
+              <img src="assets/images/gold_flourish.png" alt="Gold Flourish" class="event-flourish">
+              <div class="event-type-badge">Reception</div>
+              <div class="event-date-highlight">DEC 17, 2026</div>
+              <div class="event-time-highlight">6:30 PM Onwards</div>
+              <div class="event-venue-block">
+                <div class="event-venue-title">Al Saj Gravity</div>
+                <div class="event-venue-sub">Kazhakootam, Trivandrum</div>
+              </div>
+            </div>
+            <a href="#" class="calendar-action-btn" data-cal-event="reception">
+              <svg class="btn-icon-svg" viewBox="0 0 24 24">
+                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/>
+              </svg>
+              <span>Add to Calendar</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6. VENUES & INTERACTIVE MAP NAVIGATION
+         ========================================================= -->
+    <section id="venues" class="venues-section" aria-label="Venue Locations and Directions">
+      <div style="text-align: center;">
+        <div class="section-label">Find Your Way</div>
+        <h2 class="section-title gold-text">Venue Directions</h2>
+        <div class="section-divider-motif">
+          <div class="motif-line"></div>
+          <img src="assets/images/single_lotus_transparent.png" alt="Lotus" class="motif-lotus-icon">
+          <div class="motif-line right"></div>
+        </div>
+      </div>
+
+      <div class="venues-grid">
+        <!-- Venue 1: Trivandrum (Al Saj Gravity) -->
+        <div class="venue-card-interactive reveal-item tilt-card stagger-1">
+          <div class="venue-photo-wrapper">
+            <img src="assets/images/venue_alsaj.jpg" alt="Al Saj Gravity Convention Center, Trivandrum" class="venue-photo">
+          </div>
+          <div class="venue-city-badge">Trivandrum &bull; Grand Reception</div>
+          <h3 class="venue-main-heading">Al Saj Gravity</h3>
+          <p class="venue-sub-address">Al Saj Convention Center, Kazhakootam, Trivandrum, Kerala</p>
+          
+          <div class="qr-code-wrapper">
+            <img src="assets/images/qr_tvm.png" alt="Scan QR for Al Saj Gravity Trivandrum" class="qr-code-img">
+          </div>
+          <div class="qr-scan-hint">Scan with phone camera or tap below</div>
+
+          <a href="https://qrto.org/qVX17c" target="_blank" rel="noopener noreferrer" class="map-direct-btn">
+            <svg class="btn-icon-svg" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <span>Open in Google Maps</span>
+          </a>
+        </div>
+
+        <!-- Venue 2: Trichy (The Royal Mahal) -->
+        <div class="venue-card-interactive reveal-item tilt-card stagger-2">
+          <div class="venue-photo-wrapper">
+            <img src="assets/images/venue_royal_mahal.jpg" alt="The Royal Mahal, Trichy" class="venue-photo photo-royal">
+          </div>
+          <div class="venue-city-badge">Trichy &bull; Engagement &amp; Wedding</div>
+          <h3 class="venue-main-heading">The Royal Mahal</h3>
+          <p class="venue-sub-address">Vayalur Murugan Temple Road, Trichy, Tamil Nadu</p>
+          
+          <div class="qr-code-wrapper">
+            <img src="assets/images/qr_trichy.png" alt="Scan QR for The Royal Mahal Trichy" class="qr-code-img">
+          </div>
+          <div class="qr-scan-hint">Scan with phone camera or tap below</div>
+
+          <a href="https://qrto.org/TxUEkm" target="_blank" rel="noopener noreferrer" class="map-direct-btn">
+            <svg class="btn-icon-svg" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <span>Open in Google Maps</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         7. TRADITIONAL TAMIL PATRIKAI (சிவமயம்)
+         ========================================================= -->
+    <section id="tamil-section" class="tamil-invitation-section" aria-label="பாரம்பரிய திருமண பத்திரிகை">
+      <div class="tamil-invitation-container reveal-item">
+        <div class="tamil-sivamayam">சிவமயம்</div>
+        <div class="tamil-deity-invocations">
+          அருள்மிகு விநாயகர் துணை | அருள்மிகு இடும்பர் துணை | அருள்மிகு நல்லாண்டவர் துணை | அருள்மிகு தேவி துணை
+        </div>
+
+        <div class="tamil-greeting">அன்புடையீர், வணக்கம்.</div>
+
+        <p class="tamil-muhurtham-prose">
+          நிகழும் மங்களகரமான பராபவ வருடம், கார்த்திகை மாதம் இருபத்தி எட்டாம் தேதி 14.12.2026, திங்கட்கிழமை பஞ்சமி திதியும், திருவோண நட்சத்திரமும், அமிர்த யோகமும் கூடிய சுபயோக சுபதினத்தில், காலை 9:15 முதல் 10:15 மணிக்குள் விருச்சிக லக்கினத்தில்
+        </p>
+
+        <div class="tamil-couple-grid">
+          <!-- Bride Family in Tamil -->
+          <div class="tamil-person-block">
+            <div class="tamil-origin">புதுக்கோட்டை மாவட்டம், பொன்னமராவதி தாலுகா, உடையாம்பட்டி</div>
+            <div class="tamil-parents">
+              திரு M.S. சண்முகம் - தெய்வத்திரு S. லீலாவதி அவர்களின் மகன் வழி பேத்தியும்,<br>
+              தெய்வத்திரு G. கோபால்சாமி - தெய்வத்திரு G. மலர்ஜோதி அவர்களின் மகள் வழி பேத்தியும்,<br>
+              திரு. அகிலன் சண்முகம் - திருமதி. அன்னலக்ஷ்மி அகிலன் அவர்களின் திருநிறைச்செல்வி
+            </div>
+            <div class="tamil-name">சிவானி அகிலன் அன்னலக்ஷ்மி</div>
+          </div>
+
+          <div class="tamil-ampersand">&amp;</div>
+
+          <!-- Groom Family in Tamil -->
+          <div class="tamil-person-block">
+            <div class="tamil-origin">திருவனந்தபுரம் மாவட்டம், போதென்கோடு தாலுகா, அந்தூரிகோணம்</div>
+            <div class="tamil-parents">
+              தெய்வத்திரு பானு - திருமதி ரத்னம் மா அவர்களின் மகன் வழி பேரனும்,<br>
+              தெய்வத்திரு சதாசிவன் - திருமதி சரளா அவர்களின் மகள் வழி பேரனும்,<br>
+              திரு. சந்தோஷ் குமார் - திருமதி. சுப்ரியா சந்தோஷ் குமார் அவர்களின் திருவளர்செல்வன்
+            </div>
+            <div class="tamil-name">அபிஷேக் கிருஷ்ணா S.S</div>
+          </div>
+        </div>
+
+        <div class="tamil-conclusion">
+          இவர்களது திருமணம் இறைவன் துணைகொண்டு பெரியோர்களால் நிச்சயத்திருப்பதால் தாங்கள் தங்கள் சுற்றமும் நட்பும் சூழ வருகை தந்து மணமக்களை வாழ்த்தியருள அன்புடன் அழைக்கின்றோம்.<br><br>
+          <strong style="color: var(--color-gold-200);">இடம்:</strong> தி ராயல் மஹால், வயலூர் முருகன் கோயில் ரோடு, திருச்சி
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       8. ROYAL FOOTER
+       ========================================================= -->
+  <footer class="royal-footer">
+    <img src="assets/images/monogram_crest_transparent.png" alt="Monogram" class="footer-monogram">
+    <div class="footer-names gold-text">Sivani &amp; Abhishek</div>
+    <div class="footer-tagline">With eternal love and gratitude from both our families</div>
+    <div class="footer-copyright">
+      Trichy &bull; Trivandrum &bull; December 2026
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="royal-toast" class="royal-toast" role="alert"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
