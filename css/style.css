@@ -175,6 +175,82 @@ body.gate-active {
   transition: opacity 0.6s ease;
 }
 
+/* Central Tap-to-Enter Prompt */
+.gate-tap-prompt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+  z-index: 8;
+  padding: 1.25rem 2rem;
+  background: radial-gradient(ellipse at center, rgba(30, 3, 9, 0.85) 0%, rgba(12, 1, 4, 0.94) 70%, transparent 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.85), 0 0 30px rgba(212, 175, 55, 0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+  animation: promptPulse 3s ease-in-out infinite;
+}
+
+@keyframes promptPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(212, 175, 55, 0.2);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.04);
+    box-shadow: 0 12px 50px rgba(0, 0, 0, 0.95), 0 0 45px rgba(246, 225, 156, 0.5);
+  }
+}
+
+.temple-gate-overlay.is-playing .gate-tap-prompt {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+  pointer-events: none;
+}
+
+.gate-prompt-crest {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.65rem;
+  color: var(--color-gold-300);
+}
+
+.gate-crest-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.gate-prompt-title {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.gate-prompt-sub {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  letter-spacing: 0.12em;
+  color: var(--color-gold-200);
+  opacity: 0.85;
+}
+
 /* Pulsing sacred aura over the knocker ring */
 .gate-glowing-ring-hint {
   position: absolute;
@@ -325,7 +401,7 @@ body.gate-active {
 .video-scrub-section {
   position: relative;
   width: 100%;
-  height: 450vh; /* Smooth scrubbing scroll depth */
+  height: 380vh; /* Optimized fluid scrubbing scroll depth */
   background-color: #0b0103;
   z-index: 60;
 }
@@ -351,6 +427,44 @@ body.gate-active {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+/* Quick Tour Skip Button inside Video Scrub */
+.tour-skip-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 70;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(22, 2, 7, 0.78);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: var(--color-gold-200);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.15rem;
+  border-radius: 20px;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), 0 0 12px rgba(212, 175, 55, 0.25);
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tour-skip-btn:hover {
+  background: rgba(58, 6, 20, 0.92);
+  border-color: var(--color-gold-200);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.45);
+}
+
+.skip-arrow-svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
 }
 
 /* Atmospheric Vignette Overlay */
@@ -1769,6 +1883,32 @@ body.gate-active .side-lotus-borders {
   }
   .tamil-ampersand {
     margin: -0.25rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Fast, responsive scroll progression for mobile phones */
+  .video-scrub-section {
+    height: 220vh;
+  }
+  .gate-skip-btn,
+  .tour-skip-btn {
+    top: 1rem;
+    right: 1rem;
+    min-height: 44px;
+    padding: 0.65rem 1.15rem;
+    font-size: 0.74rem;
+  }
+  .gate-tap-prompt {
+    padding: 1rem 1.35rem;
+    width: min(300px, 86vw);
+  }
+  .gate-prompt-title {
+    font-size: 1.05rem;
+    letter-spacing: 0.16em;
+  }
+  .gate-prompt-sub {
+    font-size: 0.8rem;
   }
 }
 

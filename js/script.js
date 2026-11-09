@@ -105,7 +105,7 @@
 
     const loadQueue = [...highPriority, ...remaining];
     let loadedCount = 0;
-    const concurrency = 16;
+    const concurrency = isMobile ? 6 : 14;
     let cursor = 0;
 
     async function worker() {
@@ -134,7 +134,8 @@
      ========================================================= */
   function resizeCanvas() {
     if (!canvas || !ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const maxDpr = isMobile ? 1.5 : 2;
+    const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
     const w = window.innerWidth;
     const h = window.innerHeight;
 
@@ -279,6 +280,7 @@
 
     let isGateOpening = false;
     let isGateComplete = false;
+    let gateWatchdog = null;
 
     // Pre-buffer gate video and wedding audio for zero latency playback
     try {
@@ -293,6 +295,11 @@
       if (isGateOpening || isGateComplete) return;
       isGateOpening = true;
       gateOverlay.classList.add('is-playing');
+
+      // Safety Watchdog: If playback stalls or network lags, guarantee completion within 5.5s so users never get stuck
+      gateWatchdog = setTimeout(() => {
+        completeGate();
+      }, 5500);
 
       // Play gate video with audio immediately on direct user click
       gateVideo.muted = false;
@@ -311,6 +318,11 @@
     function completeGate() {
       if (isGateComplete) return;
       isGateComplete = true;
+
+      if (gateWatchdog) {
+        clearTimeout(gateWatchdog);
+        gateWatchdog = null;
+      }
 
       // Unlock scrolling and start transition immediately with zero delay
       document.body.classList.remove('gate-active');
@@ -336,28 +348,37 @@
         try {
           gateVideo.pause();
         } catch (_) {}
-      }, 400);
+      }, 350);
     }
 
-    // Trigger transition as soon as doors are opened (~5.2s of 5.95s)
+    // Trigger transition as soon as doors are opened (~5.0s of 5.95s)
     gateVideo.addEventListener('timeupdate', () => {
-      if (!isGateComplete && gateVideo.currentTime >= 5.2) {
+      if (!isGateComplete && gateVideo.currentTime >= 5.0) {
         completeGate();
       }
     });
 
     gateVideo.addEventListener('ended', completeGate);
+    gateVideo.addEventListener('error', completeGate);
 
-    // Tap or click on gate overlay starts the video
+    // Tap or click on gate overlay starts the video or skips if already playing
     gateOverlay.addEventListener('click', (e) => {
       if (e.target.closest('#gate-skip-btn')) return;
-      openGate();
+      if (isGateOpening) {
+        completeGate();
+      } else {
+        openGate();
+      }
     });
 
     // Touch support for phones and tablets
     gateOverlay.addEventListener('touchend', (e) => {
       if (e.target.closest('#gate-skip-btn')) return;
-      openGate();
+      if (isGateOpening) {
+        completeGate();
+      } else {
+        openGate();
+      }
     }, { passive: true });
 
     // Skip directly into invitation with zero latency
@@ -366,6 +387,10 @@
         e.stopPropagation();
         completeGate();
       });
+      skipBtn.addEventListener('touchend', (e) => {
+        e.stopPropagation();
+        completeGate();
+      }, { passive: true });
     }
   }
 

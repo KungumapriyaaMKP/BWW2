@@ -36,9 +36,8 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="preload" href="assets/images/temple_gate_poster.jpg" as="image" fetchpriority="high">
-  <link rel="preload" href="frames/desktop/frame_0001.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="preload" href="frames/desktop/frame_0002.webp" as="image" type="image/webp">
-  <link rel="preload" href="frames/desktop/frame_0003.webp" as="image" type="image/webp">
+  <link rel="preload" media="(min-width: 769px)" href="frames/desktop/frame_0001.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" media="(max-width: 768px)" href="frames/mobile/frame_0001.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="preload" href="assets/audio/wedding_music.mp3" as="audio">
 </head>
 <body>
@@ -48,6 +47,19 @@
        ========================================================= -->
   <aside id="temple-gate-overlay" class="temple-gate-overlay" aria-label="Temple Gate Entrance Portal">
     <video id="gate-video" class="gate-video" src="Temple_entrance_animation_design_cd75e40c_t0-6_1080p.mp4" poster="assets/images/temple_gate_poster.jpg" preload="auto" playsinline webkit-playsinline></video>
+
+    <!-- Luxury Central Tap-to-Enter Prompt -->
+    <div id="gate-tap-prompt" class="gate-tap-prompt" aria-hidden="true">
+      <div class="gate-prompt-crest">
+        <svg class="gate-crest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 2L3 9v13h18V9l-9-7z"/>
+          <path d="M9 22V12h6v10"/>
+        </svg>
+      </div>
+      <div class="gate-prompt-title gold-text">Tap To Enter Sanctum</div>
+      <div class="gate-prompt-sub">Sivani &amp; Abhishek</div>
+      <div class="gate-prompt-pulse"></div>
+    </div>
 
     <button id="gate-skip-btn" class="gate-skip-btn" type="button" aria-label="Skip to Wedding Invitation">
       <span>Skip to Invitation</span>
@@ -113,6 +125,14 @@
           </div>
           <span class="scroll-text">Scroll to Enter</span>
         </div>
+
+        <!-- Quick Skip Tour Shortcut -->
+        <a href="#wedding-card" id="tour-skip-btn" class="tour-skip-btn" aria-label="Skip to wedding invitation">
+          <span>Skip to Invitation</span>
+          <svg class="skip-arrow-svg" viewBox="0 0 24 24">
+            <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </a>
 
         <!-- Preload & Scrubbing Progress Bar -->
         <div id="video-load-progress" class="video-load-progress"></div>
