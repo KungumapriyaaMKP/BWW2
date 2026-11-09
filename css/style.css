@@ -500,24 +500,24 @@ body.gate-active {
   right: 0;
   pointer-events: none;
   z-index: 12;
-  opacity: 0;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
+  transition: opacity 0.4s ease;
 }
 
-body.borders-active .side-lotus-borders {
-  opacity: 1;
+body.gate-active .side-lotus-borders {
+  opacity: 0;
 }
 
 .site-border-pillar {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: clamp(100px, 14vw, 220px);
+  width: clamp(120px, 16vw, 240px);
   background-size: cover;
   background-repeat: no-repeat;
   pointer-events: none;
-  filter: drop-shadow(0 0 16px rgba(0, 0, 0, 0.7));
-  opacity: 0.88;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.85));
+  opacity: 0.95;
 }
 
 .site-border-pillar.left {
