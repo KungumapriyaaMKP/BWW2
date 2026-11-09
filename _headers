@@ -1,0 +1,25 @@
+# Global Security Headers
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: microphone=(), camera=()
+
+# Aggressive Immutable Caching for Pre-rendered WebP Animation Frames
+/frames/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Long-term Caching for High-res Images, Audio & Media
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Video Files Caching
+/*.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+# Stylesheets and Scripts (1 Day Cache with 7 Day Stale Revalidation)
+/css/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/js/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
