@@ -658,6 +658,22 @@ body.borders-active .side-lotus-borders {
   filter: drop-shadow(0 0 12px rgba(246, 225, 156, 0.45));
 }
 
+.person-name.bride-name {
+  background: linear-gradient(135deg, #fff2db 0%, #ffc482 25%, #f59e42 50%, #d9771e 75%, #ffdcb3 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 14px rgba(246, 157, 62, 0.55));
+}
+
+.person-name.groom-name {
+  background: linear-gradient(135deg, #fff9db 0%, #fedb68 25%, #e6a91c 50%, #b9810e 75%, #ffeaab 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 14px rgba(254, 219, 104, 0.55));
+}
+
 .parentage-line {
   font-family: var(--font-serif);
   font-size: 0.88rem;
@@ -1425,11 +1441,33 @@ body.borders-active .side-lotus-borders {
 
 .tamil-name {
   font-family: var(--font-tamil);
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   font-weight: 700;
-  color: #fff2c6;
-  margin: 0.5rem 0;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+  margin: 0.65rem 0;
+  display: inline-block;
+  line-height: 1.35;
+  background: linear-gradient(135deg, #fff3c4 0%, #ffd700 30%, #e2aa28 65%, #ffd978 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 14px rgba(255, 215, 0, 0.5));
+  animation: goldShimmerSweep 8s linear infinite;
+}
+
+.tamil-name.bride-name {
+  background: linear-gradient(135deg, #fff1e0 0%, #ffc685 28%, #f69d3e 55%, #df7618 80%, #ffdcb3 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px rgba(246, 157, 62, 0.65));
+}
+
+.tamil-name.groom-name {
+  background: linear-gradient(135deg, #fff9db 0%, #fedb68 28%, #e6a91c 55%, #b9810e 80%, #ffeaab 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px rgba(254, 219, 104, 0.65));
 }
 
 .tamil-parents {
