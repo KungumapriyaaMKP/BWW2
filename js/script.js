@@ -217,8 +217,8 @@
       targetProgress = p;
     }
 
-    // Activate persistent luxury lotus side borders ONLY after video section is completely scrolled past
-    if (rect.bottom <= 0) {
+    // Activate persistent luxury lotus side borders as video transitions into cards
+    if (rect.bottom <= window.innerHeight * 0.8) {
       document.body.classList.add('borders-active');
     } else {
       document.body.classList.remove('borders-active');
