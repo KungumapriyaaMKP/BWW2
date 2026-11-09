@@ -35,23 +35,23 @@
   let isPlayingMusic = false;
 
   /* =========================================================
-     2. MANIFEST & PARALLEL FRAME PRELOADER
+     2. MANIFEST & PARALLEL FRAME PRELOADER (ZERO LATENCY ENGINE)
      ========================================================= */
-  async function initManifestAndFrames() {
-    try {
-      const res = await fetch('frames/manifest.json');
-      if (res.ok) {
-        const meta = await res.json();
-        if (meta && meta.frameCount) {
+  function initManifestAndFrames() {
+    frames = new Array(FRAME_COUNT);
+
+    // 1. Kick off parallel frame preloading instantly without waiting for manifest network roundtrip
+    preloadFrames();
+
+    // 2. Fetch manifest asynchronously in background for dynamic verification without blocking
+    fetch('frames/manifest.json')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((meta) => {
+        if (meta && meta.frameCount && meta.frameCount !== FRAME_COUNT) {
           FRAME_COUNT = meta.frameCount;
         }
-      }
-    } catch (_) {
-      // Use fallback FRAME_COUNT
-    }
-
-    frames = new Array(FRAME_COUNT);
-    preloadFrames();
+      })
+      .catch(() => {});
   }
 
   async function loadSingleFrame(index) {
@@ -76,42 +76,48 @@
   }
 
   function preloadFrames() {
-    // 1. Load initial frame 0 immediately
+    // 1. Load initial frame 0 immediately and render canvas instantly
     loadSingleFrame(0).then(() => {
       resizeCanvas();
       draw(0);
     });
 
-    // 2. Hierarchical load order for instant responsiveness
-    const order = [];
-    const seen = new Set();
-    const steps = [16, 8, 4, 2, 1];
+    // 2. High-Priority Immediate Phase: Load frames 1 through 24 first so initial scroll is 100% in memory
+    const highPriority = [];
+    for (let i = 1; i <= Math.min(24, FRAME_COUNT - 1); i++) {
+      highPriority.push(i);
+    }
 
+    // 3. Staggered Stream Phase: Rapidly stream the remaining frames
+    const remaining = [];
+    const seen = new Set(highPriority);
+    seen.add(0);
+
+    const steps = [8, 4, 2, 1];
     for (const step of steps) {
-      for (let i = 0; i < FRAME_COUNT; i += step) {
+      for (let i = 25; i < FRAME_COUNT; i += step) {
         if (!seen.has(i)) {
           seen.add(i);
-          order.push(i);
+          remaining.push(i);
         }
       }
     }
 
+    const loadQueue = [...highPriority, ...remaining];
     let loadedCount = 0;
-    const concurrency = 8;
+    const concurrency = 16;
     let cursor = 0;
 
     async function worker() {
-      while (cursor < order.length) {
-        const idx = order[cursor++];
+      while (cursor < loadQueue.length) {
+        const idx = loadQueue[cursor++];
         await loadSingleFrame(idx);
         loadedCount++;
         const pct = Math.round((loadedCount / FRAME_COUNT) * 100);
         if (scrubProgress) {
           scrubProgress.style.width = pct + '%';
           if (pct >= 100) {
-            setTimeout(() => {
-              scrubProgress.style.opacity = '0';
-            }, 600);
+            scrubProgress.style.opacity = '0';
           }
         }
       }
@@ -242,11 +248,21 @@
 
   function animationLoop() {
     const diff = targetProgress - currentProgress;
-    if (Math.abs(diff) > 0.0001) {
-      currentProgress += diff * 0.12;
+    const absDiff = Math.abs(diff);
+
+    if (absDiff > 0.00005) {
+      // Snappy, instant tracking with zero perceived latency
+      const lerpFactor = absDiff > 0.03 ? 0.38 : 0.25;
+      currentProgress += diff * lerpFactor;
+
+      if (absDiff < 0.0005) {
+        currentProgress = targetProgress;
+      }
+
       draw(currentProgress);
       updateCaptions(currentProgress);
     }
+
     requestAnimationFrame(animationLoop);
   }
 
@@ -264,6 +280,12 @@
     let isGateOpening = false;
     let isGateComplete = false;
 
+    // Pre-buffer gate video and wedding audio for zero latency playback
+    try {
+      gateVideo.load();
+      if (bgMusic) bgMusic.load();
+    } catch (_) {}
+
     // Lock background scroll while gate is closed
     document.body.classList.add('gate-active');
 
@@ -272,57 +294,54 @@
       isGateOpening = true;
       gateOverlay.classList.add('is-playing');
 
-      // Attempt to play gate video with audio on direct user click
+      // Play gate video with audio immediately on direct user click
       gateVideo.muted = false;
       const playPromise = gateVideo.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
-          // Fallback to muted playback if browser policy restricts audio
+          // Fallback to muted playback if browser restricts audio
           gateVideo.muted = true;
           gateVideo.play().catch(() => {
             completeGate();
           });
         });
       }
-      // Note: Only the gate video starts here.
-      // Background wedding music is deferred until the gate fully opens.
     }
 
     function completeGate() {
       if (isGateComplete) return;
       isGateComplete = true;
 
+      // Unlock scrolling and start transition immediately with zero delay
+      document.body.classList.remove('gate-active');
+      gateOverlay.classList.add('gate-opened');
+
       if (bloom) {
         bloom.classList.add('bloom-active');
       }
 
+      // Start background wedding music immediately
+      if (bgMusic && !isPlayingMusic) {
+        bgMusic.play().then(() => {
+          isPlayingMusic = true;
+          if (musicToggle) {
+            musicToggle.classList.add('music-playing');
+            musicToggle.classList.remove('music-paused');
+          }
+        }).catch(() => {});
+      }
+
       setTimeout(() => {
-        gateOverlay.classList.add('gate-opened');
-        document.body.classList.remove('gate-active');
-
-        // Start background wedding music as the gate opens into the wedding portal
-        if (bgMusic && !isPlayingMusic) {
-          bgMusic.play().then(() => {
-            isPlayingMusic = true;
-            if (musicToggle) {
-              musicToggle.classList.add('music-playing');
-              musicToggle.classList.remove('music-paused');
-            }
-          }).catch(() => {});
-        }
-
-        setTimeout(() => {
-          gateOverlay.style.display = 'none';
-          try {
-            gateVideo.pause();
-          } catch (_) {}
-        }, 1200);
-      }, 500);
+        gateOverlay.style.display = 'none';
+        try {
+          gateVideo.pause();
+        } catch (_) {}
+      }, 400);
     }
 
-    // Monitor video progress to transition smoothly near completion (~5.6s of 5.95s)
+    // Trigger transition as soon as doors are opened (~5.2s of 5.95s)
     gateVideo.addEventListener('timeupdate', () => {
-      if (!isGateComplete && gateVideo.currentTime >= 5.6) {
+      if (!isGateComplete && gateVideo.currentTime >= 5.2) {
         completeGate();
       }
     });
@@ -341,7 +360,7 @@
       openGate();
     }, { passive: true });
 
-    // Skip directly into invitation
+    // Skip directly into invitation with zero latency
     if (skipBtn) {
       skipBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -850,9 +869,10 @@
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      }, { threshold: 0.05, rootMargin: '60px 0px 60px 0px' });
 
       revealItems.forEach(item => observer.observe(item));
     } else {
@@ -888,9 +908,9 @@
   }
 
   /* =========================================================
-     10. INITIALIZATION
+     10. ZERO-DELAY INITIALIZATION
      ========================================================= */
-  window.addEventListener('DOMContentLoaded', () => {
+  function init() {
     setupTempleGate();
     initManifestAndFrames();
     setupAudio();
@@ -906,6 +926,12 @@
 
     onScroll();
     requestAnimationFrame(animationLoop);
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 
 })();
