@@ -1066,7 +1066,7 @@ body.gate-active .side-lotus-borders {
   background: radial-gradient(ellipse at 50% 20%, #200209 0%, #120105 55%, #060002 100%);
   border: 1.5px solid rgba(212, 175, 55, 0.7);
   border-radius: 6px;
-  padding: 1.35rem 1rem 1.25rem 1rem;
+  padding: 1.65rem 1.15rem 1.45rem 1.15rem;
   text-align: center;
   box-shadow: 
     0 15px 45px rgba(0, 0, 0, 0.85),
