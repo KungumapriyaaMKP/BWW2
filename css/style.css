@@ -1762,6 +1762,25 @@ body.gate-active .side-lotus-borders {
   text-transform: uppercase;
 }
 
+.footer-credit {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: rgba(250, 245, 234, 0.35);
+  margin-top: 0.85rem;
+}
+
+.footer-credit a {
+  color: var(--color-gold-400);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-credit a:hover {
+  color: var(--color-gold-200);
+  text-decoration: underline;
+}
+
 /* ----------------- TOAST NOTIFICATION ----------------- */
 .royal-toast {
   position: fixed;
@@ -1827,7 +1846,15 @@ body.gate-active .side-lotus-borders {
 
 @media (max-width: 600px) {
   .site-border-pillar {
-    display: none;
+    display: block;
+    width: clamp(55px, 12vw, 90px);
+    opacity: 0.45 !important;
+  }
+  .wedding-invitation-container {
+    max-width: 82%;
+  }
+  .wedding-card-section {
+    padding: 3rem 0.5rem;
   }
   .floating-music-btn {
     bottom: 1rem;
@@ -1847,6 +1874,19 @@ body.gate-active .side-lotus-borders {
   }
   .countdown-unit {
     font-size: 0.65rem;
+  }
+  .panchangam-details {
+    font-size: 0.82rem;
+    padding: 0 1rem;
+    line-height: 1.8;
+  }
+  .popper-celebrate-btn {
+    font-size: 0.65rem;
+    padding: 0.55rem 1.1rem;
+    letter-spacing: 0.12em;
+  }
+  .countdown-section {
+    padding: 3rem 1rem;
   }
   .video-caption-title {
     font-size: 2.1rem;
