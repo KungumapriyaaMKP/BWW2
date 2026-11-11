@@ -1845,48 +1845,178 @@ body.gate-active .side-lotus-borders {
 }
 
 @media (max-width: 600px) {
+  /* Elegant Pichwai Lotus Flower Borders on Mobile with Smooth Inward Fade */
   .site-border-pillar {
     display: block;
-    width: clamp(55px, 12vw, 90px);
-    opacity: 0.45 !important;
+    width: clamp(38px, 10vw, 65px);
+    opacity: 0.82 !important;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.95));
   }
+  .site-border-pillar.left {
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+  }
+  .site-border-pillar.right {
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+  }
+
+  /* Safe Side Gutters: keeps all boxes safely nested between lotus borders */
+  .wedding-card-section,
+  .countdown-section,
+  .itinerary-section,
+  .venues-section,
+  .tamil-invitation-section,
+  .rsvp-section {
+    padding-left: clamp(26px, 7.5vw, 45px) !important;
+    padding-right: clamp(26px, 7.5vw, 45px) !important;
+  }
+
+  /* Central Wedding Card Box */
   .wedding-invitation-container {
-    max-width: 82%;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
   }
-  .wedding-card-section {
-    padding: 3rem 0.5rem;
+  .royal-physical-card {
+    padding: 1.85rem 1rem !important;
   }
+  .person-name {
+    font-size: clamp(1.15rem, 5vw, 1.4rem) !important;
+  }
+  .card-ceremonies-strip {
+    gap: 0.4rem !important;
+    margin: 0.85rem auto 0.25rem auto !important;
+  }
+  .card-ceremony-chip {
+    min-width: 88px !important;
+    padding: 0.38rem 0.55rem !important;
+  }
+  .chip-type {
+    font-size: 0.68rem !important;
+  }
+  .chip-date {
+    font-size: 0.62rem !important;
+  }
+
+  /* Muhurtham Countdown Section */
+  .countdown-section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .countdown-item {
+    min-width: 65px;
+    padding: 0.75rem 0.55rem;
+  }
+  .countdown-number {
+    font-size: 1.65rem;
+  }
+  .countdown-unit {
+    font-size: 0.62rem;
+  }
+  .panchangam-details {
+    font-size: 0.8rem;
+    padding: 0 0.5rem;
+    line-height: 1.75;
+  }
+  .popper-celebrate-btn {
+    font-size: 0.64rem;
+    padding: 0.55rem 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* Itinerary Section Boxes */
+  .itinerary-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .itinerary-cards-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+    gap: 1.25rem !important;
+    margin-top: 1.5rem !important;
+  }
+  .itinerary-card {
+    padding: 1.35rem 1rem 1.2rem 1rem !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Venue Directions Boxes */
+  .venues-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+    gap: 1.5rem !important;
+    margin-top: 1.5rem !important;
+  }
+  .venue-card-interactive {
+    padding: 1.35rem 1rem 1.6rem 1rem !important;
+    box-sizing: border-box !important;
+  }
+  .venue-photo-wrapper {
+    height: 155px !important;
+  }
+
+  /* Traditional Tamil Patrikai Box */
+  .tamil-invitation-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 2.25rem 1.15rem !important;
+    box-sizing: border-box !important;
+  }
+  .tamil-sivamayam {
+    font-size: 1.25rem !important;
+  }
+  .tamil-deity-invocations {
+    font-size: 0.84rem !important;
+    line-height: 1.65 !important;
+  }
+  .tamil-greeting {
+    font-size: 1.05rem !important;
+  }
+  .tamil-muhurtham-prose {
+    font-size: 0.88rem !important;
+    line-height: 1.8 !important;
+    padding: 0 !important;
+  }
+  .tamil-couple-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    margin: 1.25rem 0 !important;
+  }
+  .tamil-person-block {
+    padding: 1rem 0.75rem !important;
+  }
+  .tamil-name {
+    font-size: 1.25rem !important;
+  }
+  .tamil-parents {
+    font-size: 0.82rem !important;
+  }
+  .tamil-conclusion {
+    font-size: 0.85rem !important;
+    line-height: 1.7 !important;
+  }
+
+  /* RSVP Box */
+  .rsvp-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 2.25rem 1.25rem !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Footer */
+  .royal-footer {
+    padding: 3rem clamp(26px, 7.5vw, 45px) 2rem clamp(26px, 7.5vw, 45px) !important;
+  }
+
+  /* Floating audio button */
   .floating-music-btn {
     bottom: 1rem;
     right: 1rem;
     width: 38px;
     height: 38px;
-  }
-  .royal-physical-card {
-    padding: 2rem 1.15rem;
-  }
-  .countdown-item {
-    min-width: 68px;
-    padding: 0.85rem 0.65rem;
-  }
-  .countdown-number {
-    font-size: 1.8rem;
-  }
-  .countdown-unit {
-    font-size: 0.65rem;
-  }
-  .panchangam-details {
-    font-size: 0.82rem;
-    padding: 0 1rem;
-    line-height: 1.8;
-  }
-  .popper-celebrate-btn {
-    font-size: 0.65rem;
-    padding: 0.55rem 1.1rem;
-    letter-spacing: 0.12em;
-  }
-  .countdown-section {
-    padding: 3rem 1rem;
   }
   .video-caption-title {
     font-size: 2.1rem;
